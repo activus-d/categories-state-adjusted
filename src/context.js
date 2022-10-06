@@ -2,12 +2,10 @@ import React, {useState, useContext} from 'react'
 import menu from './data'
 const AppContext = React.createContext()
 const AppProvider =({children})=>{
-    const allCategories = [
-      "all",
-      ...new Set(menu.map((item) => item.category)),
-    ];
+    const allCategories = menu.map((item) => item.category)
+
     const [menuItems, setMenuItems] = useState(menu)
-    const [categories, setCategories] = useState([allCategories])
+    const [categories, setCategories] = useState(['all', ...new Set(allCategories)])
 
     const filterItems = (category)=>{
         if(category === 'all'){
